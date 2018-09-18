@@ -102,7 +102,11 @@
                 <version>3.0.1</version>
                 <configuration>
                     <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-                    <additionalOptions>--add-exports=java.desktop/sun.swing=org.fernice.reflare.ten</additionalOptions>
+                    <additionalOptions>
+                        <additionalOption>
+                            --add-exports=java.desktop/sun.swing=org.fernice.reflare.ten
+                        </additionalOption>
+                    </additionalOptions>
                 </configuration>
                 <executions>
                     <execution>
