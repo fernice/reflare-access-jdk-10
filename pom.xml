@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.fernice</groupId>
+        <artifactId>fernice-maven</artifactId>
+        <version>1.0.3</version>
+    </parent>
+    <artifactId>fernice-reflare-access-jdk-10</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+
+    <name>reflare Access JDK 10</name>
+    <description>Helper Implementation for JDK 8</description>
+    <url>https://github.com/fernice/reflare-access-jdk-10</url>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com:fernice/reflare-access-jdk-10.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:fernice/reflare-access-jdk-10.git</developerConnection>
+        <url>https://github.com/fernice/reflare-access-jdk-10</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <compile.source.version>10</compile.source.version>
+        <compile.target.version>10</compile.target.version>
+        <javadoc.additionalparam>-Xdoclint:none</javadoc.additionalparam>
+        <compile.verbose>false</compile.verbose>
+        <compile.show.warnings>true</compile.show.warnings>
+        <compile.show.deprecation>true</compile.show.deprecation>
+        <compile.optimize>true</compile.optimize>
+        <compile.debug>true</compile.debug>
+        <compile.debuglevel>lines,vars,source</compile.debuglevel>
+        <maven-compile-plugin.version>3.8.0</maven-compile-plugin.version>
+        <git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.fernice</groupId>
+            <artifactId>fernice-reflare-access</artifactId>
+            <version>1.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compile-plugin.version}</version>
+                    <configuration>
+                        <source>${compile.source.version}</source>
+                        <target>${compile.target.version}</target>
+                        <encoding>${project.encoding}</encoding>
+                        <compilerArgs>
+                            <arg>--add-exports</arg>
+                            <arg>java.desktop/sun.swing=org.fernice.reflare.ten</arg>
+                        </compilerArgs>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.ow2.asm</groupId>
+                            <artifactId>asm</artifactId>
+                            <version>6.1.1</version> <!-- Use newer version of ASM -->
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jetbrains.dokka</groupId>
+                    <artifactId>dokka-maven-plugin</artifactId>
+                    <version>0.9.17</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                    <additionalOptions>--add-exports=java.desktop/sun.swing=org.fernice.reflare.ten</additionalOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
