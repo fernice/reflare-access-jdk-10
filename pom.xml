@@ -8,6 +8,7 @@
         <version>1.0.7-SNAPSHOT</version>
     </parent>
     <artifactId>fernice-reflare-access-jdk-10</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
 
     <name>reflare Access JDK 10</name>
     <description>Helper Implementation for JDK 10</description>
@@ -57,6 +58,8 @@
                         <compilerArgs>
                             <arg>--add-exports</arg>
                             <arg>java.desktop/sun.swing=org.fernice.reflare.ten</arg>
+                            <arg>--add-exports</arg>
+                            <arg>java.desktop/sun.font=org.fernice.reflare.ten</arg>
                         </compilerArgs>
                     </configuration>
                     <dependencies>
@@ -102,6 +105,9 @@
                     <additionalOptions>
                         <additionalOption>
                             --add-exports=java.desktop/sun.swing=org.fernice.reflare.ten
+                        </additionalOption>
+                        <additionalOption>
+                            --add-exports=java.desktop/sun.font=org.fernice.reflare.ten
                         </additionalOption>
                     </additionalOptions>
                 </configuration>
