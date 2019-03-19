@@ -7,8 +7,13 @@
 package org.fernice.reflare.internal.impl;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BaseMultiResolutionImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.MultiResolutionImage;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import org.fernice.reflare.internal.ImageHelper.ImageAccessor;
 
@@ -29,5 +34,45 @@ public class ImageAccessorImpl implements ImageAccessor {
         } else {
             return image;
         }
+    }
+
+    @Override
+    public Image getScaledInstance(Image image, int width, int height, int hints) {
+        if (image.getWidth(null) == width && image.getHeight(null) == height) {
+            return image;
+        }
+
+        if (image instanceof MultiResolutionImage) {
+            MultiResolutionImage multiResolutionImage = (MultiResolutionImage) image;
+
+            List<Image> images = multiResolutionImage.getResolutionVariants();
+            Image base = images.get(0).getScaledInstance(width, height, hints);
+            Image variant = images.get(1).getScaledInstance(width * 2, height * 2, hints);
+
+            return new BaseMultiResolutionImage(base, variant);
+        } else {
+            return image.getScaledInstance(width, height, hints);
+        }
+    }
+
+    @Override
+    public Image getFilteredInstance(Image image, ImageFilter filter) {
+        if (image instanceof MultiResolutionImage) {
+            MultiResolutionImage multiResolutionImage = (MultiResolutionImage) image;
+
+            List<Image> images = multiResolutionImage.getResolutionVariants();
+            Image base = getFilteredInstance0(images.get(0), filter);
+            Image variant = getFilteredInstance(images.get(1), filter);
+
+            return new BaseMultiResolutionImage(base, variant);
+        } else {
+            return getFilteredInstance0(image, filter);
+        }
+    }
+
+    private Image getFilteredInstance0(Image image, ImageFilter filter) {
+        FilteredImageSource prod = new FilteredImageSource(image.getSource(), filter);
+
+        return Toolkit.getDefaultToolkit().createImage(prod);
     }
 }
