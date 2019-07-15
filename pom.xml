@@ -8,7 +8,7 @@
         <version>1.0.11</version>
     </parent>
     <artifactId>fernice-reflare-access-jdk-10</artifactId>
-    <version>1.0.11-SNAPSHOT</version>
+    <version>1.0.11</version>
 
     <name>reflare Access JDK 10</name>
     <description>Helper Implementation for JDK 10</description>
@@ -18,7 +18,7 @@
         <connection>scm:git:ssh://git@github.com:fernice/reflare-access-jdk-10.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:fernice/reflare-access-jdk-10.git</developerConnection>
         <url>https://github.com/fernice/reflare-access-jdk-10</url>
-        <tag>HEAD</tag>
+        <tag>fernice-reflare-access-jdk-10-1.0.11</tag>
     </scm>
 
     <properties>
