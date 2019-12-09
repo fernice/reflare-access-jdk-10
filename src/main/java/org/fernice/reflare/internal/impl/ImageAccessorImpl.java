@@ -21,18 +21,21 @@ public class ImageAccessorImpl implements ImageAccessor {
 
     @Override
     public Image getMultiResolutionImageResource(String resource) throws IOException {
-        var image = ImageIO.read(ImageAccessorImpl.class.getResourceAsStream(resource));
+        Image image;
+        try (var inputStream = ImageAccessorImpl.class.getResourceAsStream(resource)) {
+            image = ImageIO.read(inputStream);
+        }
 
         var resource2x = resource.substring(0, resource.lastIndexOf('.')) + "@2x" + resource.substring(resource.lastIndexOf("."));
 
-        var input2x = ImageAccessorImpl.class.getResourceAsStream(resource2x);
+        try (var input2x = ImageAccessorImpl.class.getResourceAsStream(resource2x);) {
+            if (input2x != null) {
+                var image2x = ImageIO.read(input2x);
 
-        if (input2x != null) {
-            var image2x = ImageIO.read(input2x);
-
-            return new BaseMultiResolutionImage(image, image2x);
-        } else {
-            return image;
+                return new BaseMultiResolutionImage(image, image2x);
+            } else {
+                return image;
+            }
         }
     }
 
