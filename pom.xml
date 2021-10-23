@@ -22,8 +22,8 @@
     </scm>
 
     <properties>
-        <compile.source.version>17</compile.source.version>
-        <compile.target.version>17</compile.target.version>
+        <compile.source.version>10</compile.source.version>
+        <compile.target.version>10</compile.target.version>
         <javadoc.additionalparam>-Xdoclint:none</javadoc.additionalparam>
         <compile.verbose>false</compile.verbose>
         <compile.show.warnings>true</compile.show.warnings>
