@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.fernice</groupId>
         <artifactId>fernice-maven</artifactId>
-        <version>1.0.34</version>
+        <version>1.0.35</version>
     </parent>
     <artifactId>fernice-reflare-access-jdk-10</artifactId>
     <version>1.0.35-SNAPSHOT</version>
@@ -22,8 +22,8 @@
     </scm>
 
     <properties>
-        <compile.source.version>10</compile.source.version>
-        <compile.target.version>10</compile.target.version>
+        <compile.source.version>17</compile.source.version>
+        <compile.target.version>17</compile.target.version>
         <javadoc.additionalparam>-Xdoclint:none</javadoc.additionalparam>
         <compile.verbose>false</compile.verbose>
         <compile.show.warnings>true</compile.show.warnings>
