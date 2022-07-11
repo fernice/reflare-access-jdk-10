@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.fernice</groupId>
         <artifactId>fernice-maven</artifactId>
-        <version>1.0.36</version>
+        <version>1.0.37</version>
     </parent>
     <artifactId>fernice-reflare-access-jdk-10</artifactId>
     <version>1.0.37-SNAPSHOT</version>
@@ -31,8 +31,10 @@
         <compile.optimize>true</compile.optimize>
         <compile.debug>true</compile.debug>
         <compile.debuglevel>lines,vars,source</compile.debuglevel>
-        <maven-compile-plugin.version>3.8.0</maven-compile-plugin.version>
+        <maven-compile-plugin.version>3.10.0</maven-compile-plugin.version>
         <git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
+
+        <refract.version>17.0.0</refract.version>
     </properties>
 
     <dependencies>
@@ -41,6 +43,12 @@
             <artifactId>fernice-reflare-access</artifactId>
             <version>${project.parent.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fernice</groupId>
+            <artifactId>refract</artifactId>
+            <version>${refract.version}</version>
         </dependency>
     </dependencies>
 
@@ -57,9 +65,9 @@
                         <encoding>${project.encoding}</encoding>
                         <compilerArgs>
                             <arg>--add-exports</arg>
-                            <arg>java.desktop/sun.swing=org.fernice.reflare.ten</arg>
+                            <arg>java.desktop/sun.swing=org.fernice.reflare.access.ten</arg>
                             <arg>--add-exports</arg>
-                            <arg>java.desktop/sun.font=org.fernice.reflare.ten</arg>
+                            <arg>java.desktop/sun.font=org.fernice.reflare.access.ten</arg>
                         </compilerArgs>
                     </configuration>
                     <dependencies>
@@ -99,15 +107,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.3.2</version>
                 <configuration>
                     <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                     <additionalOptions>
                         <additionalOption>
-                            --add-exports=java.desktop/sun.swing=org.fernice.reflare.ten
+                            --add-exports=java.desktop/sun.swing=org.fernice.reflare.access.ten
                         </additionalOption>
                         <additionalOption>
-                            --add-exports=java.desktop/sun.font=org.fernice.reflare.ten
+                            --add-exports=java.desktop/sun.font=org.fernice.reflare.access.ten
                         </additionalOption>
                     </additionalOptions>
                 </configuration>
