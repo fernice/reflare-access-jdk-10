@@ -66,7 +66,7 @@ public class ScreenPopupFactory extends PopupFactory {
         // we need to set every time, because PopupFactory caches the heavy weight
         // TODO: CPlatformWindow constants?
         if (fIsActive) {
-            popupRootPane.putClientProperty(WINDOW_ALPHA, TRANSLUCENT);
+            popupRootPane.putClientProperty(WINDOW_ALPHA, OPAQUE);
             popupRootPane.putClientProperty(WINDOW_SHADOW, Boolean.TRUE);
             popupRootPane.putClientProperty(WINDOW_FADE_DELEGATE, invoker);
 
