@@ -5,10 +5,10 @@
     <parent>
         <groupId>org.fernice</groupId>
         <artifactId>fernice-maven</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </parent>
     <artifactId>fernice-reflare-access-jdk-10</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 
     <name>reflare-access-jdk-10</name>
     <description>Helper Implementation for JDK 10</description>
