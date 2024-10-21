@@ -9,5 +9,6 @@ public class CompatibilityAccessorImpl implements CompatibilityAccessor {
     public void ensureCompatibility() {
         Modules.addExports("java.desktop", "sun.swing", "EVERYONE");
         Modules.addExports("java.desktop", "sun.font", "EVERYONE");
+        Modules.addExports("java.desktop", "sun.awt.shell", "EVERYONE");
     }
 }
